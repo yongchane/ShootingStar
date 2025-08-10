@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useGameStore } from '@/store/gameStore';
 import { saveResult, getRanking } from '@/utils/storage';
 import { shareResult, downloadResultImage } from '@/utils/sharing';
+import Particles from '@/components/Particles';
 
 interface Star {
   id: string;
@@ -165,42 +166,26 @@ export default function StarGame() {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
-      {/* 떨어지는 별똥별 배경 애니메이션 */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(15)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute animate-pulse opacity-40"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `-10%`,
-              animation: `shootingStar ${3 + Math.random() * 2}s linear infinite`,
-              animationDelay: `${Math.random() * 5}s`
-            }}
-          >
-            ⭐
-          </div>
-        ))}
+    <div className="min-h-screen relative overflow-hidden bg-black">
+      {/* WebGL 파티클 배경 */}
+      <div className="absolute inset-0 w-full h-full">
+        <Particles
+          particleCount={250}
+          particleSpread={12}
+          speed={0.3}
+          particleColors={["#a855f7", "#3b82f6", "#8b5cf6", "#ec4899", "#f59e0b", "#ffffff"]}
+          moveParticlesOnHover={false}
+          particleHoverFactor={0}
+          alphaParticles={true}
+          particleBaseSize={80}
+          sizeRandomness={1.5}
+          cameraDistance={20}
+          disableRotation={false}
+          className="w-full h-full"
+        />
       </div>
-      
-      <style jsx>{`
-        @keyframes shootingStar {
-          0% {
-            transform: translateY(0) translateX(0);
-            opacity: 0.8;
-          }
-          50% {
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(110vh) translateX(-100px);
-            opacity: 0;
-          }
-        }
-      `}</style>
       {/* 상단 헤더 */}
-      <div className="fixed top-4 left-4 right-4 flex justify-between items-center z-20 bg-black/40 backdrop-blur-sm rounded-xl p-3 border border-purple-500/30">
+      <div className="fixed top-4 left-4 right-4 flex justify-between items-center z-20 bg-black/60 backdrop-blur-md rounded-xl p-3 border border-purple-500/40">
         <Link href="/" className="text-purple-300 hover:text-purple-100 transition-colors">
           ← 홈으로
         </Link>
@@ -218,7 +203,7 @@ export default function StarGame() {
       {/* 선택된 별똥별 표시 */}
       {phase === 'playing' && selectedStars.length > 0 && (
         <div className="fixed top-20 left-4 right-4 z-20">
-          <div className="bg-black/60 backdrop-blur-sm rounded-xl p-4 text-center border border-purple-500/30">
+          <div className="bg-black/80 backdrop-blur-md rounded-xl p-4 text-center border border-purple-500/50">
             <div className="flex justify-center gap-2 items-center mb-2">
               {selectedStars.map((star, index) => (
                 <span key={star.id}>
@@ -256,7 +241,7 @@ export default function StarGame() {
               떨어지는 별똥별을 클릭해서 숫자의 합을 정확히 <span className="font-bold text-yellow-400">10</span>으로 만들어보세요!
             </p>
             
-            <div className="bg-black/40 backdrop-blur-sm rounded-xl p-6 space-y-3 border border-purple-500/30">
+            <div className="bg-black/80 backdrop-blur-md rounded-xl p-6 space-y-3 border border-purple-500/50">
               <div className="text-left space-y-1 text-gray-300">
                 <div>⏱️ 제한시간: 60초</div>
                 <div>🎯 목표: 숫자 합 10 만들기</div>
@@ -313,7 +298,7 @@ export default function StarGame() {
           >
             <div className="text-6xl mb-4">🎉</div>
             
-            <div className="bg-black/60 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-purple-500/30">
+            <div className="bg-black/80 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-purple-500/50">
               <h2 className="text-3xl font-bold mb-6 text-purple-300">게임 완료!</h2>
               
               <div className="space-y-3 text-lg mb-6 text-gray-300">
@@ -377,7 +362,7 @@ export default function StarGame() {
       {/* 광고 배너 영역 */}
       {phase === 'playing' && (
         <div className="fixed bottom-4 left-4 right-4 z-10">
-          <div className="bg-black/40 backdrop-blur-sm rounded-lg p-2 text-center text-gray-400 text-xs border border-purple-500/30">
+          <div className="bg-black/60 backdrop-blur-md rounded-lg p-2 text-center text-gray-400 text-xs border border-purple-500/40">
             광고 영역
           </div>
         </div>

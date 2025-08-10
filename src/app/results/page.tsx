@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { getResults, getResultsByType, getBestScore, getAverageScore, getRanking } from '@/utils/storage';
 import { shareResult, downloadResultImage } from '@/utils/sharing';
 import type { GameResult, ReactionResult, AppleResult } from '@/utils/storage';
+import Particles from '@/components/Particles';
 
 export default function ResultsPage() {
   const [results, setResults] = useState<GameResult[]>([]);
@@ -34,23 +35,23 @@ export default function ResultsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 p-4 relative overflow-hidden">
-      {/* 별똥별 배경 애니메이션 */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className={`absolute animate-pulse opacity-30`}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 2}s`
-            }}
-          >
-            ⭐
-          </div>
-        ))}
+    <div className="min-h-screen bg-black p-4 relative overflow-hidden">
+      {/* WebGL 파티클 배경 */}
+      <div className="absolute inset-0 w-full h-full">
+        <Particles
+          particleCount={200}
+          particleSpread={18}
+          speed={0.15}
+          particleColors={["#a855f7", "#3b82f6", "#8b5cf6", "#ec4899", "#6366f1"]}
+          moveParticlesOnHover={true}
+          particleHoverFactor={1.5}
+          alphaParticles={true}
+          particleBaseSize={100}
+          sizeRandomness={1.8}
+          cameraDistance={30}
+          disableRotation={false}
+          className="w-full h-full"
+        />
       </div>
       <div className="max-w-4xl mx-auto relative z-10">
         {/* 헤더 */}
@@ -68,7 +69,7 @@ export default function ResultsPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-black/40 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-purple-500/30"
+            className="bg-black/70 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-purple-500/50"
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="text-3xl">⭐</div>
@@ -121,7 +122,7 @@ export default function ResultsPage() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-black/40 backdrop-blur-sm rounded-xl p-4 shadow-lg hover:shadow-xl transition-shadow border border-purple-500/30"
+                className="bg-black/70 backdrop-blur-md rounded-xl p-4 shadow-lg hover:shadow-xl transition-shadow border border-purple-500/50"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -194,7 +195,7 @@ export default function ResultsPage() {
 
         {/* 광고 배너 영역 */}
         <div className="mt-8">
-          <div className="bg-black/20 rounded-lg p-4 text-center text-gray-500 text-sm border-2 border-dashed border-purple-500/30">
+          <div className="bg-black/50 backdrop-blur-sm rounded-lg p-4 text-center text-gray-500 text-sm border-2 border-dashed border-purple-500/40">
             광고 영역 (애드센스 승인 후 활성화)
           </div>
         </div>

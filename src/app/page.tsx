@@ -4,27 +4,28 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import GameCard from "@/components/GameCard";
 import AdBanner from "@/components/AdBanner";
+import GradientText from "@/components/GradientText";
+import Particles from "@/components/Particles";
 
 export default function Home() {
-
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 relative overflow-hidden">
-      {/* 별똥별 배경 애니메이션 */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className={`absolute animate-pulse opacity-60`}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 2}s`
-            }}
-          >
-            ⭐
-          </div>
-        ))}
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden bg-black">
+      {/* WebGL 파티클 배경 */}
+      <div className="absolute inset-0 w-full h-full">
+        <Particles
+          particleCount={300}
+          particleSpread={15}
+          speed={0.2}
+          particleColors={["#a855f7", "#3b82f6", "#8b5cf6", "#ec4899", "#f59e0b"]}
+          moveParticlesOnHover={true}
+          particleHoverFactor={2}
+          alphaParticles={true}
+          particleBaseSize={120}
+          sizeRandomness={2}
+          cameraDistance={25}
+          disableRotation={false}
+          className="w-full h-full"
+        />
       </div>
       <div className="w-full max-w-6xl relative z-10">
         <motion.div
@@ -35,26 +36,34 @@ export default function Home() {
         >
           {/* 메인 타이틀 */}
           <div className="space-y-3 md:space-y-4">
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold bg-gradient-to-r from-purple-500 via-blue-500 to-indigo-600 bg-clip-text text-transparent">
-              ⭐ 별똥별 게임 (10 만들기)
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold">
+              <GradientText
+                colors={["#a855f7", "#3b82f6", "#4f46e5"]}
+                animationSpeed={6}
+                showBorder={false}
+              >
+                ⭐ 별똥별 게임
+              </GradientText>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600">
+            <p className="text-base sm:text-lg md:text-xl text-gray-300">
               떨어지는 별똥별을 클릭해서{" "}
-              <span className="font-bold text-purple-600">10을 만들어보자!</span>
+              <span className="font-bold text-purple-400">
+                10을 만들어보자!
+              </span>
             </p>
-            <p className="text-sm md:text-base text-gray-500">
+            <p className="text-sm md:text-base text-gray-400">
               60초 안에 최고 점수를 달성하고 우주 최강을 증명해보자!
             </p>
           </div>
 
           {/* 게임 시작 버튼 */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
             className="mt-8 md:mt-12"
           >
-            <Link 
+            <Link
               href="/game/star"
               className="inline-block bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white text-lg md:text-xl px-8 md:px-12 py-4 md:py-6 rounded-2xl font-bold transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
             >
@@ -71,7 +80,7 @@ export default function Home() {
           >
             <Link
               href="/results"
-              className="bg-white/70 backdrop-blur-sm hover:bg-white/90 text-purple-600 px-4 md:px-6 py-2 md:py-3 rounded-xl font-medium transition-all shadow-lg hover:shadow-xl border border-white/30"
+              className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-purple-300 hover:text-white px-4 md:px-6 py-2 md:py-3 rounded-xl font-medium transition-all shadow-lg hover:shadow-xl border border-purple-500/30"
             >
               🏆 내 기록 보기
             </Link>
