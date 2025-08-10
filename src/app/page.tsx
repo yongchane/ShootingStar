@@ -16,7 +16,13 @@ export default function Home() {
           particleCount={300}
           particleSpread={15}
           speed={0.2}
-          particleColors={["#a855f7", "#3b82f6", "#8b5cf6", "#ec4899", "#f59e0b"]}
+          particleColors={[
+            "#a855f7",
+            "#3b82f6",
+            "#8b5cf6",
+            "#ec4899",
+            "#f59e0b",
+          ]}
           moveParticlesOnHover={true}
           particleHoverFactor={2}
           alphaParticles={true}
@@ -67,7 +73,7 @@ export default function Home() {
               href="/game/star"
               className="inline-block bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white text-lg md:text-xl px-8 md:px-12 py-4 md:py-6 rounded-2xl font-bold transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
             >
-              ⭐ 게임 시작하기
+              게임 시작하기
             </Link>
           </motion.div>
 
@@ -87,16 +93,6 @@ export default function Home() {
           </motion.div>
 
           {/* 하단 설명 */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-            className="text-center space-y-2 mt-8 md:mt-12"
-          >
-            <p className="text-xs sm:text-sm text-gray-500 px-4">
-              🎯 회원가입 없이 바로 시작 | 📱 모바일 최적화 | 🏆 결과 공유
-            </p>
-          </motion.div>
         </motion.div>
 
         {/* 광고 배너 영역 */}
