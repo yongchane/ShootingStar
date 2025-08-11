@@ -200,7 +200,13 @@ export default function StarGame() {
       {/* 타임 게이지바 */}
       {phase === "playing" && (
         <div className="fixed top-4 right-4 z-20 h-[90%]">
-          <div className="bg-black/60 backdrop-blur-md rounded-full p-2 border border-purple-500/40 h-full">
+          <div className=" w-[40px] h-[40px] mb-[10px] bg-black/80 rounded-full flex items-center justify-center text-white text-xs font-bold border-2 border-purple-400">
+            {timeLeft}
+          </div>
+          <div
+            className="bg-black/60 backdrop-blur-md rounded-full p-3 border border-purple-500/40"
+            style={{ height: "calc(100% - 40px)" }}
+          >
             <div className="relative w-4 h-full">
               {/* 배경 게이지 */}
               <div className="absolute inset-0 bg-gray-700/50 rounded-full"></div>
@@ -220,9 +226,6 @@ export default function StarGame() {
                 transition={{ duration: 0.5, ease: "easeInOut" }}
               />
               {/* 시간 텍스트 */}
-              <div className="absolute top-1/2 -left-12 transform -translate-y-1/2 w-[40px] h-[40px] bg-black/80 rounded-full flex items-center justify-center text-white text-xs font-bold border-2 border-purple-400">
-                {timeLeft}
-              </div>
             </div>
           </div>
         </div>
@@ -248,8 +251,8 @@ export default function StarGame() {
 
       {/* 선택된 별똥별 표시 */}
       {phase === "playing" && selectedStars.length > 0 && (
-        <div className="fixed top-20 left-4 right-4 z-20">
-          <div className="bg-black/80 backdrop-blur-md rounded-xl p-4 text-center border border-purple-500/50">
+        <div className="fixed top-20 left-4 right-20 z-20">
+          <div className="bg-transparent backdrop-blur-sm rounded-xl p-4 text-center border border-purple-500/30">
             <div className="flex justify-center gap-2 items-center mb-2">
               {selectedStars.map((star, index) => (
                 <span key={star.id}>
@@ -334,7 +337,9 @@ export default function StarGame() {
 
       {/* 게임 플레이 화면 */}
       {phase === "playing" && (
-        <div className="game-area pr-20"> {/* 우측 80px 여백 확보 */}
+        <div className="game-area pr-20">
+          {" "}
+          {/* 우측 80px 여백 확보 */}
           <AnimatePresence>
             {stars.map((star) => (
               <motion.div
