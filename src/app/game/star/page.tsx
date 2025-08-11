@@ -231,8 +231,12 @@ export default function StarGame() {
         </div>
       )}
 
-      {/* 상단 헤더 */}
-      <div className="fixed top-4 left-4 right-20 flex justify-between items-center z-20 bg-black/60 backdrop-blur-md rounded-xl p-3 border border-purple-500/40">
+      {/* 상단 헤더  phase === "playing" ? "right-20" : "right-4" */}
+      <div
+        className={`fixed top-4 left-4 ${
+          phase === "playing" ? "right-20" : "right-4"
+        } flex justify-between items-center z-20 bg-black/60 backdrop-blur-md rounded-xl p-3 border border-purple-500/40`}
+      >
         <Link
           href="/"
           className="text-purple-300 hover:text-purple-100 transition-colors"
