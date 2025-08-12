@@ -165,6 +165,13 @@ export default function StarGame() {
 
   const restartGame = () => {
     setPhase("ready");
+    setScore(0);
+    setCombo(0);
+    setMistakes(0);
+    setTimeLeft(60);
+    setGameSpeed(1);
+    setStars([]);
+    setSelectedStars([]);
   };
 
   const getSelectedSum = () => {
@@ -448,7 +455,7 @@ export default function StarGame() {
               </button>
 
               <button
-                onClick={() => setPhase("ready")}
+                onClick={restartGame}
                 className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-4 py-2 rounded-xl font-medium transition-all transform hover:scale-105"
               >
                 🔄 다시하기
