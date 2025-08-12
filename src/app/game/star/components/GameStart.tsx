@@ -1,12 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 interface GameStartProps {
   onStartGame: () => void;
 }
 
 export default function GameStart({ onStartGame }: GameStartProps) {
+  const router = useRouter();
+
+  const handleNavigateToAlone = () => {
+    router.push("/game/star/alone");
+  };
+
+  const handleNavigateToOthers = () => {
+    router.push("/game/star/others");
+  };
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <motion.div
@@ -31,8 +41,11 @@ export default function GameStart({ onStartGame }: GameStartProps) {
         </div>
 
         <div className="flex flex-col md:flex-row gap-4 justify-center mt-6">
-          <button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white text-xl px-8 py-4 rounded-2xl font-bold transition-all shadow-lg transform hover:scale-105">
-            연습하기(개발중)
+          <button
+            onClick={handleNavigateToAlone}
+            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white text-xl px-8 py-4 rounded-2xl font-bold transition-all shadow-lg transform hover:scale-105"
+          >
+            연습하기
           </button>
           <button
             onClick={onStartGame}
@@ -40,8 +53,11 @@ export default function GameStart({ onStartGame }: GameStartProps) {
           >
             게임 시작하기
           </button>
-          <button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white text-xl px-8 py-4 rounded-2xl font-bold transition-all shadow-lg transform hover:scale-105">
-            친구들과 내기 하기(개발중)
+          <button
+            onClick={handleNavigateToOthers}
+            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white text-xl px-8 py-4 rounded-2xl font-bold transition-all shadow-lg transform hover:scale-105"
+          >
+            친구들과 내기 하기
           </button>
         </div>
       </motion.div>
