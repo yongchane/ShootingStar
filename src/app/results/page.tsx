@@ -1,12 +1,18 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { getResults, getResultsByType, getBestScore, getAverageScore, getRanking } from '@/utils/storage';
-import { shareResult, downloadResultImage } from '@/utils/sharing';
-import type { GameResult, ReactionResult, AppleResult } from '@/utils/storage';
-import Particles from '@/components/Particles';
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import {
+  getResults,
+  getResultsByType,
+  getBestScore,
+  getAverageScore,
+  getRanking,
+} from "@/utils/storage";
+import { shareResult, downloadResultImage } from "@/utils/sharing";
+import type { GameResult, ReactionResult, AppleResult } from "@/utils/storage";
+import Particles from "@/components/Particles";
 
 export default function ResultsPage() {
   const [results, setResults] = useState<GameResult[]>([]);
@@ -16,22 +22,22 @@ export default function ResultsPage() {
   }, []);
 
   const loadResults = () => {
-    setResults(getResultsByType('apple'));
+    setResults(getResultsByType("apple"));
   };
 
   const formatDate = (timestamp: number) => {
-    return new Date(timestamp).toLocaleDateString('ko-KR', {
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
+    return new Date(timestamp).toLocaleDateString("ko-KR", {
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
 
   const appleStats = {
-    bestScore: getBestScore('apple'),
-    averageScore: getAverageScore('apple'),
-    totalGames: getResultsByType('apple').length,
+    bestScore: getBestScore("apple"),
+    averageScore: getAverageScore("apple"),
+    totalGames: getResultsByType("apple").length,
   };
 
   return (
@@ -42,7 +48,13 @@ export default function ResultsPage() {
           particleCount={200}
           particleSpread={18}
           speed={0.15}
-          particleColors={["#a855f7", "#3b82f6", "#8b5cf6", "#ec4899", "#6366f1"]}
+          particleColors={[
+            "#a855f7",
+            "#3b82f6",
+            "#8b5cf6",
+            "#ec4899",
+            "#6366f1",
+          ]}
           moveParticlesOnHover={true}
           particleHoverFactor={1.5}
           alphaParticles={true}
@@ -56,7 +68,10 @@ export default function ResultsPage() {
       <div className="max-w-4xl mx-auto relative z-10">
         {/* 헤더 */}
         <div className="flex justify-between items-center mb-8">
-          <Link href="/" className="text-purple-300 hover:text-purple-100 transition-colors">
+          <Link
+            href="/"
+            className="text-purple-300 hover:text-purple-100 transition-colors"
+          >
             ← 홈으로
           </Link>
           <h1 className="text-3xl font-bold text-white">⭐ 내 기록</h1>
@@ -73,25 +88,33 @@ export default function ResultsPage() {
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="text-3xl">⭐</div>
-              <h3 className="text-xl font-bold text-purple-300">별똥별게임 통계</h3>
+              <h3 className="text-xl font-bold text-purple-300">
+                별똥별게임 통계
+              </h3>
             </div>
-            
+
             {appleStats.totalGames > 0 ? (
               <div className="space-y-3 text-gray-300">
                 <div className="flex justify-between">
                   <span>총 플레이:</span>
-                  <span className="font-bold text-white">{appleStats.totalGames}회</span>
+                  <span className="font-bold text-white">
+                    {appleStats.totalGames}회
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span>최고 점수:</span>
-                  <span className="font-bold text-yellow-400">{appleStats.bestScore?.score}점</span>
+                  <span className="font-bold text-yellow-400">
+                    {appleStats.bestScore?.score}점
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span>평균 점수:</span>
-                  <span className="font-bold text-blue-400">{appleStats.averageScore}점</span>
+                  <span className="font-bold text-blue-400">
+                    {appleStats.averageScore}점
+                  </span>
                 </div>
                 <div className="mt-3 text-sm text-center p-2 bg-purple-900/50 rounded-lg text-purple-300">
-                  {getRanking('apple', appleStats.averageScore)}
+                  {getRanking("apple", appleStats.averageScore)}
                 </div>
               </div>
             ) : (
@@ -101,7 +124,6 @@ export default function ResultsPage() {
             )}
           </motion.div>
         </div>
-
 
         {/* 결과 목록 */}
         <div className="space-y-4">
@@ -128,19 +150,21 @@ export default function ResultsPage() {
                   <div className="flex items-center gap-3">
                     <div className="text-2xl">⭐</div>
                     <div>
-                      <div className="font-bold text-lg text-white">별똥별게임</div>
+                      <div className="font-bold text-lg text-white">
+                        별똥별게임
+                      </div>
                       <div className="text-sm text-gray-400">
                         {formatDate(result.timestamp)}
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="text-right">
                     <div className="text-2xl font-bold text-yellow-400">
                       {result.score}점
                     </div>
                     <div className="text-sm text-purple-400">
-                      {getRanking(result.gameType, result.score).split(' ')[0]}
+                      {getRanking(result.gameType, result.score).split(" ")[0]}
                     </div>
                   </div>
                 </div>
@@ -149,9 +173,15 @@ export default function ResultsPage() {
                 {result.details && (
                   <div className="mt-3 pt-3 border-t border-purple-500/30">
                     <div className="flex gap-4 text-sm text-gray-400">
-                      <span>콤보: {(result as AppleResult).details.combos}</span>
-                      <span>실수: {(result as AppleResult).details.mistakes}</span>
-                      <span>잔여시간: {(result as AppleResult).details.timeLeft}초</span>
+                      <span>
+                        콤보: {(result as AppleResult).details.combos}
+                      </span>
+                      <span>
+                        실수: {(result as AppleResult).details.mistakes}
+                      </span>
+                      <span>
+                        잔여시간: {(result as AppleResult).details.timeLeft}초
+                      </span>
                     </div>
                   </div>
                 )}
@@ -194,11 +224,11 @@ export default function ResultsPage() {
         )}
 
         {/* 광고 배너 영역 */}
-        <div className="mt-8">
+        {/* <div className="mt-8">
           <div className="bg-black/50 backdrop-blur-sm rounded-lg p-4 text-center text-gray-500 text-sm border-2 border-dashed border-purple-500/40">
             광고 영역 (애드센스 승인 후 활성화)
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

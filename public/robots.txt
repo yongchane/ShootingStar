@@ -1,0 +1,30 @@
+# 별똥별 게임 - Robots.txt
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+
+# 주요 페이지 우선순위
+Allow: /game/star
+Allow: /game/star/alone
+Allow: /game/star/others
+Allow: /results
+
+# 크롤 속도 제한 (선택사항)
+Crawl-delay: 0
+
+# Sitemap 위치
+Sitemap: ${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/sitemap.xml
+
+# 검색엔진별 설정
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Yeti
+Allow: /
