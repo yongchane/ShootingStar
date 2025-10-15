@@ -1,13 +1,13 @@
 "use client";
 
 import Particles from "@/components/Particles";
-import GameHeader from "./components/GameHeader";
-import GameStart from "./components/GameStart";
-import GamePlay from "./components/GamePlay";
-import GameEnd from "./components/GameEnd";
+import GameHeader from "../components/GameHeader";
+import GameStart from "../components/GameStart";
+import GamePlay from "../components/GamePlay";
+import GameEnd from "../components/GameEnd";
 import { useStarGame } from "@/hooks/useStarGame";
 
-export default function StarGame() {
+export default function OthersGame() {
   const {
     phase,
     stars,
@@ -24,7 +24,6 @@ export default function StarGame() {
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-black">
-      {/* WebGL 파티클 배경 */}
       <div className="absolute inset-0 w-full h-full">
         <Particles
           particleCount={250}
@@ -49,7 +48,6 @@ export default function StarGame() {
         />
       </div>
 
-      {/* 게임 헤더 */}
       <GameHeader
         phase={phase}
         score={score}
@@ -58,10 +56,8 @@ export default function StarGame() {
         timeLeft={timeLeft}
       />
 
-      {/* 게임 시작 화면 */}
       {phase === "ready" && <GameStart onStartGame={startGame} />}
 
-      {/* 게임 플레이 화면 */}
       {phase === "playing" && (
         <GamePlay
           stars={stars}
@@ -71,7 +67,6 @@ export default function StarGame() {
         />
       )}
 
-      {/* 게임 종료 화면 */}
       {phase === "finished" && (
         <GameEnd
           score={score}

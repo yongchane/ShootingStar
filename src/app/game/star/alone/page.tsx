@@ -1,13 +1,13 @@
 "use client";
 
 import Particles from "@/components/Particles";
-import GameHeader from "./components/GameHeader";
-import GameStart from "./components/GameStart";
-import GamePlay from "./components/GamePlay";
-import GameEnd from "./components/GameEnd";
+import GameHeader from "../components/GameHeader";
+import GameStart from "../components/GameStart";
+import GamePlay from "../components/GamePlay";
+import GameEnd from "../components/GameEnd";
 import { useStarGame } from "@/hooks/useStarGame";
 
-export default function StarGame() {
+export default function AloneGame() {
   const {
     phase,
     stars,
@@ -20,7 +20,7 @@ export default function StarGame() {
     startGame,
     restartGame,
     getSelectedSum,
-  } = useStarGame({ initialPhase: "ready" });
+  } = useStarGame({ initialPhase: "playing" }); // 바로 게임 시작
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-black">
