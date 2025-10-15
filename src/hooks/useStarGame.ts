@@ -91,7 +91,7 @@ export function useStarGame({
             }))
             .filter((star) => star.y < window.innerHeight + 100)
         );
-      }, 50);
+      }, 30); // 50ms에서 30ms로 단축 (더 부드럽고 빠른 움직임)
 
       return () => clearInterval(interval);
     }
@@ -116,7 +116,7 @@ export function useStarGame({
       number: Math.floor(Math.random() * 9) + 1, // 1-9
       x: Math.random() * (gameAreaWidth - 80) + 40, // 좌우 여백 40px씩
       y: -50,
-      speed: Math.random() * 2 + 1 + gameSpeed,
+      speed: Math.random() * 3 + 2 + gameSpeed, // 기본 속도 증가: 2~5 + gameSpeed
     };
 
     setStars((prev) => [...prev, newStar]);

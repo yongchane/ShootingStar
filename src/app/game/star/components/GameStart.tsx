@@ -41,24 +41,24 @@ export default function GameStart({ onStartGame }: GameStartProps) {
         </div>
 
         <div className="flex flex-col md:flex-row gap-4 justify-center mt-6">
-          <button
+          {/* <button
             onClick={handleNavigateToAlone}
             className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white text-xl px-8 py-4 rounded-2xl font-bold transition-all shadow-lg transform hover:scale-105"
           >
             연습하기
-          </button>
+          </button> */}
           <button
             onClick={onStartGame}
             className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white text-xl px-8 py-4 rounded-2xl font-bold transition-all shadow-lg transform hover:scale-105"
           >
             게임 시작하기
           </button>
-          <button
+          {/* <button
             onClick={handleNavigateToOthers}
             className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white text-xl px-8 py-4 rounded-2xl font-bold transition-all shadow-lg transform hover:scale-105"
           >
             친구들과 내기 하기
-          </button>
+          </button> */}
         </div>
       </motion.div>
     </div>
