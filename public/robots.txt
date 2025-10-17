@@ -16,6 +16,7 @@ Crawl-delay: 0
 # Sitemap 위치
 Sitemap: https://www.shootingstar.run/sitemap.xml
 
+
 # 검색엔진별 설정
 User-agent: Googlebot
 Allow: /
