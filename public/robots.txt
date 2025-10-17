@@ -14,8 +14,8 @@ Allow: /results
 Crawl-delay: 0
 
 # Sitemap 위치
-# 배포 시 실제 도메인으로 변경해주세요
-Sitemap: https://your-domain.com/sitemap.xml
+Sitemap: https://www.shootingstar.run/sitemap.xml
+
 
 # 검색엔진별 설정
 User-agent: Googlebot
