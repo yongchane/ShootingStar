@@ -1,0 +1,27 @@
+{
+  "name": "별똥별 게임 - 반응속도 테스트",
+  "short_name": "별똥별 게임",
+  "description": "별똥별을 클릭해서 10을 만드는 무료 온라인 반응속도 게임",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#8b5cf6",
+  "theme_color": "#8b5cf6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["games", "entertainment"],
+  "lang": "ko",
+  "dir": "ltr"
+}
